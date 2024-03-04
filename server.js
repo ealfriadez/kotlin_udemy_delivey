@@ -4,6 +4,7 @@ const http = require('http');
 const server = http.createServer(app);
 const logger = require('morgan');
 const cors = require('cors');
+const passport = require('passport')
 
 /*
 *   RUTAS
@@ -18,6 +19,10 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(cors());
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
 
 app.disable('x-powered-by');
 
@@ -28,7 +33,8 @@ app.set('port', port);
 */
 users(app);
 
-server.listen(3000,'172.31.2.216' || 'localhost', function(){
+server.listen(3000,'192.168.1.4' || 'dpg-cncldbect0pc73fsi1s0-a.oregon-postgres.render.com', function(){
+//server.listen(3000,'delivery_db_9xm4_user:vatiAShJkkQbIlPc4OOpbpB3BEgGDWU3@dpg-cncldbect0pc73fsi1s0-a.oregon-postgres.render.com/delivery_db_9xm4' || 'localhost', function(){
     console.log('Aplicacion de NodeJS ' + process.pid + ' Iniciada...');
     console.log('Aplicacion de NodeJS ' + port + ' Iniciada...');
 });
@@ -57,3 +63,4 @@ module.exports = {
 //200 - es un mensaje de respuesta exitosa
 //404 - la url no existe
 //500 - error interno del servidor
+//501 - algo no esta soportado para brindar la respuesta esperada

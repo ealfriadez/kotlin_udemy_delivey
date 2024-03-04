@@ -12,6 +12,7 @@ CREATE TABLE users(
 	updated_at TIMESTAMP(0) NOT NULL
 );
 -------------------------------------
+
 INSERT INTO users(
 	email,
 	name,
