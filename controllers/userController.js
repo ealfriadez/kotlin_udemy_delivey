@@ -44,7 +44,7 @@ module.exports = {
     async login(req, res, next){
         try {
             const email = req.body.email;
-            const password = req.body.password
+            const password = req.body.password;
             const myUser = await User.findByEmail(email);
 
             if(!myUser){
