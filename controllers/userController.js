@@ -1,9 +1,10 @@
-//const passport = require('../config/passport');
 const User = require('../models/user');
 const Rol = require('../models/rol');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
+
+const CLIENTE = '1';
 
 module.exports = {
     async getAll(req, res, next){
@@ -25,15 +26,27 @@ module.exports = {
             const user = req.body;
             const data = await User.create(user);
 
-            await Rol.create(data.id, 1)
+            await Rol.create(data.id, CLIENTE)
+            
+            const token = jwt.sign({ id: data.id, email: user.email}, keys.secretOrKey, {
+                //expiresIn:
+            })
+
+            const myData = {
+                id: user.id,
+                name: user.name,
+                lastname: user.lastname,
+                email: user.email,
+                phone: user.phone,
+                image: user.image,
+                session_token: `JWT ${token}`
+            };
 
             console.log(`Usuario: ${data}`);
             return res.status(201).json({
                 success: true,
                 message: 'El registro se realizo correctamente',
-                data: {
-                    'id': data.id
-                }                
+                data: myData            
             });
         } catch (error) {
             console.log(`Error: ${error}`);

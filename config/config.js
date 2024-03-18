@@ -16,12 +16,7 @@ const dataBaseConfig = {
     'database': 'delivery_db_9xm4',
     'user': 'delivery_db_9xm4_user',
     'password': 'vatiAShJkkQbIlPc4OOpbpB3BEgGDWU3',
-    'ssl': 'true'    
-    /*'host': 'localhost',
-    'port': 5432,
-    'database': 'delivery_db',
-    'user': 'postgres',
-    'password': '40294774'*/
+    'ssl': 'true'        
 };
 
 const db = pgp(dataBaseConfig);

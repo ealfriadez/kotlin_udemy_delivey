@@ -19,4 +19,4 @@ Rol.create = (id_user, id_rol) => {
     ]);
 }
 
-module.exports = Rol
+module.exports = Rol;

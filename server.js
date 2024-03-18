@@ -33,7 +33,7 @@ app.set('port', port);
 */
 users(app);
 
-server.listen(3000,'192.168.1.13' || 'dpg-cncldbect0pc73fsi1s0-a.oregon-postgres.render.com', function(){
+server.listen(3000,'172.31.2.216' || 'dpg-cncldbect0pc73fsi1s0-a.oregon-postgres.render.com', function(){
 //server.listen(3000,'delivery_db_9xm4_user:vatiAShJkkQbIlPc4OOpbpB3BEgGDWU3@dpg-cncldbect0pc73fsi1s0-a.oregon-postgres.render.com/delivery_db_9xm4' || 'localhost', function(){
     console.log('Aplicacion de NodeJS ' + process.pid + ' Iniciada...');
     console.log('Aplicacion de NodeJS ' + port + ' Iniciada...');
