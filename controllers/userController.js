@@ -5,6 +5,9 @@ const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 
 const CLIENTE = '1';
+const MESSAGE_ERROR_LISTAR_USUARIOS = 'Error al obtener los usuarios';
+const MESSAGE_REGISTRAR_USUARIOS = 'El registro se realizo correctamente';
+const MESSAGE_ERROR_REGISTRAR_USUARIOS = 'Error al registrar el usuario';
 
 module.exports = {
     async getAll(req, res, next){
@@ -13,10 +16,10 @@ module.exports = {
             console.log(`Usuarios: ${data}`);
             return res.status(201).json(data);
         } catch (error) {
-            console.log(`Error: ${error}`);
+            console.log(error);
             return res.status(501).json({
                 success: false,
-                message: `Error al obtener los usuarios`
+                message: MESSAGE_ERROR_LISTAR_USUARIOS
             });
         }
     },
@@ -45,14 +48,14 @@ module.exports = {
             console.log(`Usuario: ${data}`);
             return res.status(201).json({
                 success: true,
-                message: 'El registro se realizo correctamente',
+                message: MESSAGE_REGISTRAR_USUARIOS,
                 data: myData            
             });
         } catch (error) {
             console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
-                message: `Error al registrar el usuario`,
+                message: MESSAGE_ERROR_REGISTRAR_USUARIOS,
                 error: error
             });
         }
