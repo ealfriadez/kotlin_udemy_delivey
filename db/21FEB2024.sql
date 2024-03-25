@@ -101,3 +101,14 @@ values(
 	'2024-10-04'
 );
 
+
+UPDATE
+	 users 
+SET 
+    image = $2,
+    lastname = $3,
+    phone = $4,
+    image = $5,
+    update_at = $6
+WHERE 
+    id = $1
