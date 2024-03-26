@@ -12,7 +12,7 @@ User.getAll = () => {
         ;
 
         return db.manyOrNone(sql);
-};
+}
 
 User.findByEmail = (email) => {
     const sql = 
@@ -49,7 +49,7 @@ User.findByEmail = (email) => {
         ;
 
         return db.oneOrNone(sql, email)
-};
+}
 
 User.findById = (id, callBack) => {
     const sql = 
@@ -69,7 +69,7 @@ User.findById = (id, callBack) => {
         ;
 
         return db.oneOrNone(sql, id).then(user => { callBack(null, user) })
-};
+}
 
 User.create = async(user) => {
     
@@ -109,7 +109,7 @@ User.create = async(user) => {
         new Date,
         new Date
     ]);
-};
+}
 
 User.update = (user) => {
 

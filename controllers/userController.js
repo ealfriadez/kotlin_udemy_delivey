@@ -6,9 +6,10 @@ const keys = require('../config/keys');
 const storage = require('../utils/cloud_storage');
 
 const CLIENTE = '1';
-const MESSAGE_ERROR_LISTAR_USUARIOS = 'Error al obtener los usuarios';
+const MESSAGE_ERROR_OBTENER_USUARIOS = 'Error al obtener los usuarios';
 const MESSAGE_REGISTRAR_USUARIOS = 'El registro se realizo correctamente';
 const MESSAGE_ERROR_REGISTRAR_USUARIOS = 'Error al registrar el usuario';
+const MESSAGE_EMAIL_NO_ENCONTRADO = 'El email no fue encontrado';
 
 module.exports = {
     async getAll(req, res, next){
@@ -37,7 +38,7 @@ module.exports = {
             })
 
             const myData = {
-                id: user.id,
+                id: data.id,
                 name: user.name,
                 lastname: user.lastname,
                 email: user.email,
@@ -71,7 +72,7 @@ module.exports = {
             if(!myUser){
                 return res.status(401).json({
                     success: false,
-                    message: 'El email no fue encontrado'
+                    message: MESSAGE_EMAIL_NO_ENCONTRADO
                 })
             }
 
@@ -138,7 +139,7 @@ module.exports = {
 
             await User.update(user);  //GUARDANDO LA URL EN LA BASE DE DATOS
 
-            return res.update(201).json({
+            return res.status(201).json({
                 success: true,
                 message: 'Los datos del usuario se han actualizado correctamente',
                 data: user
