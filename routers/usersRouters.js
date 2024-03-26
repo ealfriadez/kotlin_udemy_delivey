@@ -1,6 +1,6 @@
 const UsersController = require('../controllers/userController');
 
-module.exports = (app) => {
+module.exports = (app, upload) => {
 
     //OBTENER DATOS
     app.get('/api/users/getAll', UsersController.getAll);
