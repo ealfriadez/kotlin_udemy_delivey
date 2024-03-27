@@ -1,3 +1,3 @@
 module.exports = {
-    secretOrKey: 'fUjXn2r5u8x!A%D*G-KaPdSgVkYp3s6v9y$B?E(H+MbQeThWmZq4t7w!z%C*F)J@'
+    secretOrKey: 'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAO4Z+NwRp9KzQBovQfc1wb+8szQCR9YsA0+yF6Kk5SgYShKuADPOSmY0Rc3ALbWMQh4bk88h9Mde1zoBTXGx/0ECAwEAAQ=='
 }
