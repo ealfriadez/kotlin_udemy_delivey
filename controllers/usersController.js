@@ -162,8 +162,5 @@ module.exports = {
                 error: error
             });
         }
-
     }
-
-
 };
