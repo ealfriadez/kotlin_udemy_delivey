@@ -9,18 +9,20 @@ const multer = require('multer');
 const serviceAccount = require('./serviceAccountKey.json');
 const admin = require('firebase-admin');
 
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
+
 
 const upload = multer({
     storage: multer.memoryStorage()
 });
 
 /*
-*   RUTAS
+* RUTAS
 */
-const users = require('./routers/usersRouters')
+const users = require('./routes/usersRoutes');
 
 const port = process.env.PORT || 3000;
 
@@ -29,9 +31,12 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
+
 app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
+
+// console.log('PASSPORT', passport);
 
 require('./config/passport')(passport);
 
@@ -40,28 +45,19 @@ app.disable('x-powered-by');
 app.set('port', port);
 
 /*
-*   Llamando a las tura
+* LLAMANDO A LA RUTAS
 */
 users(app, upload);
 
 server.listen(3000,'172.31.2.216' || 'dpg-cncldbect0pc73fsi1s0-a.oregon-postgres.render.com', function(){
-//server.listen(3000,'delivery_db_9xm4_user:vatiAShJkkQbIlPc4OOpbpB3BEgGDWU3@dpg-cncldbect0pc73fsi1s0-a.oregon-postgres.render.com/delivery_db_9xm4' || 'localhost', function(){
-    console.log('Aplicacion de NodeJS ' + process.pid + ' Iniciada...');
-    console.log('Aplicacion de NodeJS ' + port + ' Iniciada...');
-});
+    //server.listen(3000,'delivery_db_9xm4_user:vatiAShJkkQbIlPc4OOpbpB3BEgGDWU3@dpg-cncldbect0pc73fsi1s0-a.oregon-postgres.render.com/delivery_db_9xm4' || 'localhost', function(){
+        console.log('Aplicacion de NodeJS ' + process.pid + ' Iniciada...');
+        console.log('Aplicacion de NodeJS ' + port + ' Iniciada...');
+    });
 
-/*
-app.get('/', (req, res) => {
-    res.send('Ruta raiz del backend');
-});
 
-app.get('/test', (req, res) => {
-    res.send('Esta es la ruta TEST');
-});
-*/
-
-//ERROR HANDLER
-app.use((err, req, res, next) =>{
+// ERROR HANDLER
+app.use((err, req, res, next) => {
     console.log(err);
     res.status(err.status || 500).send(err.stack);
 });
@@ -71,7 +67,6 @@ module.exports = {
     server: server
 }
 
-//200 - es un mensaje de respuesta exitosa
-//404 - la url no existe
-//500 - error interno del servidor
-//501 - algo no esta soportado para brindar la respuesta esperada
+// 200 - ES UN RESPUESTA EXITOSA
+// 404 - SIGNIFICA QUE LA URL NO EXISTE
+// 500 - ERROR INTERNO DEL SERVIDOR

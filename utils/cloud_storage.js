@@ -1,6 +1,6 @@
 const { Storage } = require('@google-cloud/storage');
 const { format } = require('util');
-const env = require('../config/env');
+const env = require('../config/env')
 const url = require('url');
 const { v4: uuidv4 } = require('uuid');
 const uuid = uuidv4();
@@ -43,7 +43,8 @@ module.exports = (file, pathImage, deletePathImage) => {
             if (pathImage != null || pathImage != undefined) {
 
                 let fileUpload = bucket.file(`${pathImage}`);
-                const blobStream = fileUpload.createWriteStream({
+                let stream = fileUpload.createWriteStream();
+                const blobStream = stream.pipe(fileUpload.createWriteStream({
                     metadata: {
                         contentType: 'image/png',
                         metadata: {
@@ -52,7 +53,7 @@ module.exports = (file, pathImage, deletePathImage) => {
                     },
                     resumable: false
 
-                });
+                }));
 
                 blobStream.on('error', (error) => {
                     console.log('Error al subir archivo a firebase', error);
@@ -70,4 +71,4 @@ module.exports = (file, pathImage, deletePathImage) => {
             }
         }
     });
-};
+}
